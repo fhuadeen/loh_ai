@@ -32,9 +32,9 @@ class LoHModel(LoHAI):
     def get_model(self):
         return self.model
 
-    # def set_model(self, model_name):
-    #     self.model_name = model_name
-
 
 class AIChainer(LoHAI):
-    ...
+
+    @abc.abstractmethod
+    def run(self):
+        pass

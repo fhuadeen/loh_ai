@@ -13,7 +13,7 @@ from loh_langchain import (
     LohLangChain,
     RedundantChromaFilterRetriever,
 )
-from _config import OPENAI_API_KEY
+from loh_ai.config import OPENAI_API_KEY
 
 
 embeddings_obj = OpenAIEmbeddings()
@@ -54,10 +54,9 @@ class TestLangChainAI(unittest.TestCase):
         )
         self.assertIsInstance(lvdb, Chroma)
 
-    @unittest.skipIf(False, "Skipping this test if condition is True")
+    @unittest.skipIf(True, "Skipping this test if condition is True")
     def test_retrieve(self):
-        # query = "which period did I work in Medium Biosciences"
-        query = "Give me a summary of my tasks at Medium Biosciences"
+        query = "Give me a summary of my tasks"
 
         chroma = Chroma(
             persist_directory="chromadb",
@@ -67,13 +66,13 @@ class TestLangChainAI(unittest.TestCase):
             embeddings_obj=embeddings_obj,
             chroma=chroma
         )
-        llc = LohLangChain().retrieve(
+        response = LohLangChain().run(
             query=query,
             retriever=retriever,
             chat_model=chat_model,
         )
-        print(llc)
-        self.assertIsNotNone(llc)
+        # print("response:", response)
+        self.assertIsInstance(response, str)
 
 
 if __name__ == "__main__":

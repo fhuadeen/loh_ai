@@ -16,7 +16,7 @@ from langchain_community.document_loaders import S3FileLoader, PyPDFLoader
 from langchain_core.documents.base import Document
 
 from loh_ai import AIChainer, BaseVectorDB, LoHModel
-from _config import OPENAI_API_KEY
+from loh_ai.config import OPENAI_API_KEY
 
 
 LANGCHAIN_MODELS = {
@@ -94,7 +94,7 @@ class LangChainVectorDB(BaseVectorDB):
 
 class LohLangChain(AIChainer):
 
-    def retrieve(
+    def run(
         self,
         query: str,
         retriever: BaseRetriever = RedundantChromaFilterRetriever,
