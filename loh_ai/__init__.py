@@ -6,7 +6,6 @@ from typing import List, Any, Union
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE)
 
-# from loh_utils.databases import Database
 
 class LoHAI(abc.ABC):
     """Base LoH class. An abstract class that can be inherited from"""
